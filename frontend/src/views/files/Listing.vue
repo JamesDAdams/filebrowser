@@ -211,6 +211,7 @@
             v-bind:type="item.type"
             v-bind:size="item.size"
             v-bind:path="item.path"
+            v-bind:folderimg="item.folderimg"
           >
           </item>
         </div>
@@ -324,6 +325,12 @@ export default {
         }
       });
 
+      dirs.forEach((item) => {
+        let haseFolderImage = files.find(obj => obj.name.includes(".folderimg." + item.name));
+        if(haseFolderImage) {
+          item.folderimg = haseFolderImage.name;
+        }
+      });
       return { dirs, files };
     },
     dirs() {
