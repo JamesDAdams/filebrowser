@@ -18,7 +18,10 @@
         v-if="readOnly == undefined && type === 'image' && isThumbsEnabled"
         v-lazy="thumbnailUrl"
       />
-      <i v-else class="material-icons"></i>
+      <span v-else>
+        <img v-if="folderimg" :src="'/api/preview/big/' + folderimg" />
+        <i v-else class="material-icons"></i>
+      </span>
     </div>
 
     <div>
@@ -59,6 +62,7 @@ export default {
     "index",
     "readOnly",
     "path",
+    "folderimg",
   ],
   computed: {
     ...mapState(["user", "selected", "req", "jwt"]),
